@@ -1,0 +1,41 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+  ai:
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+        dimension: 1536
+        initialize-schema: true
+    ollama:
+      base-url: http://localhost:11434
+      embedding:
+        options:
+          model: nomic-embed-text
+          timeout: 120s
+      chat:
+        enabled: true
+        options:
+          model: llama3.1:8b
+          temperature: 0.7
+          num-ctx: 4096
+
+logging:
+  level:
+    com.gleo.labs.service: DEBUG
+    org.apache.pdfbox: ERROR
+
+chatbot:
+  name: "Gleo Bot"
+  prompt-template: |
+    You are {name}, an assistant specialized application.
+    
+    User's question:'.
+    
+    Use the following pieces of context to answer the user's question.
+    If you don't know the answer based on the context provided, just say that you don't know, don't try to make up an answer.
+    
+    Always provide your answer in a clear and structured way.
