@@ -38,3 +38,18 @@ target/
 *.ipr
 .DS_Store
 help.md
+
+# Chainlit
+.chainlit/
+*.db
+*.sqlite
+
+# Documents (si confidentiels)
+.files/
+*.pdf
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
